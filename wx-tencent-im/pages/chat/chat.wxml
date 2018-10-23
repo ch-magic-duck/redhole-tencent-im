@@ -1,0 +1,25 @@
+<scroll-view scroll-into-view="{{toView}}" style="height: {{scroll_height}}px;"
+ upper-threshold="100"  scroll-y="true" enable-back-to-top="true" class="message-list">
+  <!-- 每一行 -->
+  <view class="row" wx:for="{{messages}}" wx:key="" id="row_{{index}}">
+    <!-- 日期 -->
+    <view class="datetime" wx:if="{{item.msgTime != ''}}">{{item.msgTime}}</view>
+    <!-- 头像与内容文本 -->
+    <view class="body" style="flex-flow: {{item.myself == 0 ? 'row' : 'row-reverse'}}">
+      <view class="avatar-container">
+        <image class="avatar" src="{{item.avatarUrl}}" />
+      </view>
+      <!-- 画对话框 -->
+      <view class="triangle" style="{{item.myself == 1 ? 'right: 140rpx; background: #7ECB4B' : 'left: 140rpx;'}}"></view>
+      <view class="content" style="{{item.myself == 1 ? 'background: #7ECB4B' : ''}}">
+        <view>{{item.msgText}}</view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+<view class="reply">
+  <view class="opration-area">
+    <input type="text" bindinput="getContent" value="{{content}}"/>
+  </view>
+  <view class="send" bindtap='sendMsg'>发送</view>
+</view>

@@ -1,0 +1,111 @@
+/**index.wxss**/
+.message-sec {
+    width: 96%;
+    height: auto;
+    padding-left: 4%;
+    display: block;
+    background: white;
+    border-bottom: 1rpx solid #ededed;
+}
+.message-sec .child {
+    width: 100%;
+    height: 90rpx;
+    padding: 25rpx 0rpx;
+}
+.message-sec .child image {
+    width: 90rpx;
+    height: 90rpx;
+    display: block;
+    left: 0rpx;
+}
+
+.message-sec .child em {
+    top:25rpx;
+    left:105rpx;
+    right: inherit;
+}
+
+.message-sec .child .content {
+    height: 90rpx;
+    margin-left: 110rpx;
+    padding: 0rpx 4% 15rpx 0rpx;
+    border-bottom: 1rpx solid #ededed;
+}
+
+.message-sec .child .content .flex {
+    margin: 10rpx 0rpx 5rpx 0rpx;
+}
+
+.message-sec .child .content .flex .flex100-5 {
+    font-size: 28rpx;
+    color: #303030;
+}
+
+.message-sec .child .content .flex .tr {
+    color: #6a6a6a;
+}
+
+.message-sec .child .content .text {
+    font-size: 24rpx;
+    color: #989898;
+}
+
+.flex100-5 {
+    flex: 0 0 50%;
+    box-sizing: border-box;
+}
+
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.flex, {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.tr {
+    text-align: right;
+}
+
+.fix {
+    position: fixed;
+}
+
+.abs {
+    position: absolute;
+}
+
+.rel {
+    position: relative;
+}
+
+.br-3 {
+    border-radius: 3rpx;
+}
+
+.br-5 {
+    border-radius: 5rpx;
+}
+
+.br-10 {
+    border-radius: 10rpx;
+}
+
+.br-13 {
+    border-radius: 13rpx;
+}
+
+.br-15 {
+    border-radius: 15rpx;
+}
+
+page {
+    background: #f4f4f8;
+}
+
+view,button {
+    display: block;
+    overflow: initial;
+}

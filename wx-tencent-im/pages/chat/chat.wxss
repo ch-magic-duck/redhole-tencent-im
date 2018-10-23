@@ -1,0 +1,187 @@
+/** 聊天窗口样式
+ * 54px为回复框高度，js同
+ */
+
+/*聊天记录*/
+.message-list {
+	/*margin-bottom: 54px;*/
+	background: rgb(235, 235, 235);
+}
+
+/*单元行*/
+.row {
+  display: flex;
+  flex-direction: column;
+  margin: 0 30rpx;
+}
+
+/*日期*/
+.datetime {
+	font-size: 10px;
+	padding: 10px 0;
+	color: #999;
+	text-align: center;
+}
+
+.send {
+  font-size: 15px;
+	padding-right: 10px;
+	color: #999;
+	text-align: center;
+}
+
+/*主体*/
+.body {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	justify-content: flex-start;
+	width: 100%;
+	margin-top: 10px;
+}
+
+
+/*头像容器*/
+.body.avatar-container {
+	width: 20%;
+}
+
+/*头像*/
+.body .avatar {
+	width: 80rpx;
+	height: 80rpx;
+	border-radius: 50%;
+	margin: 0 20rpx;
+}
+
+/*文本消息*/
+.body .content {
+	font-size: 16px;
+	background: #fff;
+	border-radius: 5px;
+	padding: 10px;
+	line-height: 22px;
+	margin-bottom: 10px;
+}
+
+/* 三角箭头 */
+.body .triangle {
+	background: white;
+	width: 20rpx;
+	height: 20rpx;
+	margin-top: 26rpx;
+	transform: rotate(45deg);
+	position: absolute;
+}
+
+/*图片消息*/
+.picture {
+	width: 160px;
+}
+
+/*回复框*/
+.reply {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: 54px;
+	border-top: 1px solid rgb(215, 215, 215);
+	background: rgb(245, 245, 245);
+}
+
+.reply .voice-image {
+	width: 25px;
+	height: 25px;
+	margin-left: 3%;
+}
+
+/*文本输入或语音录入*/
+.reply .opration-area {
+	flex: 1;
+	padding: 8px;
+}
+
+/*回复文本框*/
+.reply input {
+	background: rgb(252, 252, 252);
+	height: 36px;
+	border: 1px solid rgb(221, 221, 221);
+	border-radius: 6px;
+	padding-left: 3px;
+}
+
+/*选取图片*/
+.reply .choose-image {
+	width: 25px;
+	height: 25px;
+	margin-right: 3%;
+}
+
+/*按住说话button*/
+.voice-button {
+	height: 36px;
+	color: #818181;
+	font-size: 14px;
+	line-height: 36px;
+}
+
+/*悬浮提示框*/
+.hud-container {
+	position: fixed;
+	width: 150px;
+	height: 150px;
+	left: 50%;
+	top: 50%;
+	margin-left: -75px;
+	margin-top: -75px;
+}
+
+/*背景层*/
+.hud-background {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: #999;
+	opacity: .8;
+	z-index: 11;
+	border-radius: 10px;
+}
+
+/*悬浮框主体*/
+.hud-body {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	z-index: 19;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+
+/*图标*/
+.hud-body image {
+	margin-top: 20px;
+	width: 80px;
+	height: 80px;
+}
+
+/*文字*/
+.hud-body .tip {
+	color: #fff;
+	text-align: center;
+	width: 90%;
+	line-height: 34px;
+	margin: 0 auto;
+	margin-bottom: 10px;
+	width: 90%;
+}
+
+.hud-body .warning {
+	background: #cc3333;
+	border-radius: 5px;
+}
