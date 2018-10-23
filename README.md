@@ -27,7 +27,7 @@ cnpm install expres
 cnpm install tls-sig-api
 ```
 
-实际对接时，后端根据自己的开发语言去进行继承，有 3 个接口是必须实现的：
+实际对接时，后端根据自己的开发语言去进行集成，有 3 个接口是必须实现的：
 
 1. 通过 identifier 获取 sig （[通过私钥和公钥生成，保存 180 天](https://cloud.tencent.com/document/product/269/1510)）, 用于前端登录 im 鉴权。
 2. 将用户导入到你的腾讯云 im 应用中（[独立模式帐号导入](https://cloud.tencent.com/document/product/269/1608)）。
@@ -47,7 +47,7 @@ node express-im.js
 
 根据官方文档的提示，首先我们需要让用户登录腾讯云 IM 应用，在登录之前，我们需要初始化一些必要参数，这些参数都在 `app.js` 中可以看到：
 
-``` json
+``` 
 App({
   data: {
     im: {
@@ -67,7 +67,7 @@ App({
 
 修改配置信息完毕后，重新编译一下，程序应该会报 [70013错误码](https://cloud.tencent.com/document/product/269/1671)，这是因为你还未将用户导入到你的腾讯云 im 应用中，可以通过 Postman 先制造假数据：
 
-![](https://raw.githubusercontent.com/SQDYY/wx-tencent-im/master/node-im/image/03.png)
+![](https://raw.githubusercontent.com/SQDYY/wx-tencent-im/master/node-im/image/03.jpg)
 
 之后重新编译即可，为了能够看到数据，你需要使用 Postman 多创建几个用户，然后与当前账号绑定好友关系，然后调用聊天接口发送消息：
 
