@@ -17,10 +17,13 @@
 
 /*日期*/
 .datetime {
-	font-size: 10px;
-	padding: 10px 0;
-	color: #999;
-	text-align: center;
+	font-size:10px;
+  padding:3px 0;
+  color:#fff;
+  text-align:center;
+  background:#CFCFCF;
+  margin:6px 100px;
+  border-radius:5px;
 }
 
 .send {
@@ -79,20 +82,6 @@
 	width: 160px;
 }
 
-/*回复框*/
-.reply {
-	display: flex;
-	flex-direction: row;
-	justify-content: flex-start;
-	align-items: center;
-	position: fixed;
-	bottom: 0;
-	width: 100%;
-	height: 54px;
-	border-top: 1px solid rgb(215, 215, 215);
-	background: rgb(245, 245, 245);
-}
-
 .reply .voice-image {
 	width: 25px;
 	height: 25px;
@@ -111,7 +100,7 @@
 	height: 36px;
 	border: 1px solid rgb(221, 221, 221);
 	border-radius: 6px;
-	padding-left: 3px;
+	padding: 0px 5px;
 }
 
 /*选取图片*/
@@ -178,10 +167,86 @@
 	line-height: 34px;
 	margin: 0 auto;
 	margin-bottom: 10px;
-	width: 90%;
 }
 
 .hud-body .warning {
 	background: #cc3333;
 	border-radius: 5px;
+}
+.icon {
+  width: 25px;
+  height: 25px;
+  padding-right: 5px;
+}
+
+/*回复框*/
+.reply {
+	display: flex;
+	flex-direction: row;
+  flex-wrap:wrap;
+	justify-content: flex-start;
+	align-items: center;
+	position: fixed;
+	bottom: 0;
+  left:0;
+  right:0;
+  z-index:100;
+	width: 100%;
+	height: 95px;
+	background-color: #fff;
+}
+
+.emoji-box {
+  position: relative;
+  height: 200px;
+  padding: 5px 0;
+  box-sizing: border-box;
+}
+
+.emoji-cell {
+  width: 9.09%;
+  height: 33px;
+  display: inline-block;
+}
+
+.emoji-cell image {
+  width: 23px;
+  height: 23px;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.emoji-cell view {
+  width: 23px;
+  height: 23px;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.touch-active:active {
+  background-color: #f2f2f2
+}
+
+/* 快捷方式*/
+.shortcut {
+  display:flex;
+  position:relative;
+  padding:5px 0;
+  box-sizing:border-box;
+  width:100%;
+  background:rgb(235, 235, 235);
+  border-bottom: 1px solid rgb(215, 215, 215);
+}
+
+.shortcut-but {
+  font-size:12px;
+  background:#fff;
+  color:#999;
+  border-color: #999;
+  text-align: center;
+  border-radius: 5px;
+  border:1px solid rgb(235,235,235);
+  padding:2px 10px;
+  margin:0px 8px;
+  width:25%;
 }

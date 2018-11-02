@@ -53,6 +53,9 @@ Page({
       }
       wx.hideLoading()
     })
+    // 清空本地缓存
+    wx.setStorageSync('lastMsgTime', 0);
+    wx.setStorageSync('msgKey', '');
   },
   /**
    * 拉取最近联系人列表
@@ -64,14 +67,23 @@ Page({
     im.getRecentContactList({ 'Count': 10 }, function (resp) {
       if (resp.SessionItem && resp.SessionItem.length > 0) {
         var contactList = resp.SessionItem.map((item, index) => {
-          return {
+          var message = {
             "friendId": item.To_Account,
             "friendName": item.C2cNick,
             "friendAvatarUrl": item.C2cImage,
             "msgTime": util.getDateDiff(item.MsgTimeStamp * 1000),
-            "msg": item.MsgShow,
             "unreadMsgCount": item.UnreadMsgCount
+          } 
+          var msg = item.MsgShow
+          var type = msg.substring(0, 6)
+          if (type === "$0001$") { // 新文字类型处理方式
+            message.msg = msg.substring(6, msg.length)
+          }else if(type === "$0002$") {
+            message.msg = "[图片]"
+          } else { // 老数据，默认处理
+            message.msg = msg
           }
+          return message
         })
         // 设置联系人列表
         that.setData({

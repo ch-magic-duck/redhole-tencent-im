@@ -1,25 +1,48 @@
-<scroll-view scroll-into-view="{{toView}}" style="height: {{scroll_height}}px;"
- upper-threshold="100"  scroll-y="true" enable-back-to-top="true" class="message-list">
+<scroll-view class="message-list"
+  scroll-into-view="{{toView}}" 
+  style="height: {{scrollWindowHeight}}px;"
+  upper-threshold="100" 
+  scroll-y="true" 
+  enable-back-to-top="true"
+  bindscroll="scroll"
+  bindscrolltoupper="continueGetHistoryMsg">
   <!-- 每一行 -->
-  <view class="row" wx:for="{{messages}}" wx:key="" id="row_{{index}}">
+  <view class="row" wx:for="{{messages}}" wx:key="" >
     <!-- 日期 -->
-    <view class="datetime" wx:if="{{item.msgTime != ''}}">{{item.msgTime}}</view>
+    <view class="datetime" wx:if="{{item.time != ''}}">{{item.time}}</view>
     <!-- 头像与内容文本 -->
     <view class="body" style="flex-flow: {{item.myself == 0 ? 'row' : 'row-reverse'}}">
-      <view class="avatar-container">
-        <image class="avatar" src="{{item.avatarUrl}}" />
+      <view class="avatar-container" id="row_{{index}}">
+        <image class="avatar" src="{{item.avatarUrl}}"/>
       </view>
       <!-- 画对话框 -->
       <view class="triangle" style="{{item.myself == 1 ? 'right: 140rpx; background: #7ECB4B' : 'left: 140rpx;'}}"></view>
       <view class="content" style="{{item.myself == 1 ? 'background: #7ECB4B' : ''}}">
-        <view>{{item.msgText}}</view>
+        <image class="picture" wx:if="{{item.type == 'image'}}" src="{{item.content}}" mode="widthFix" bindtap="preview" data-src="{{item.content}}" />
+				<view wx:else="{{item.type == 'text'}}">{{item.content}}</view>
       </view>
     </view>
   </view>
 </scroll-view>
-<view class="reply">
-  <view class="opration-area">
-    <input type="text" bindinput="getContent" value="{{content}}"/>
+<view class="reply" style="height: {{replyHeight}}">
+  <!-- 快捷键 -->
+  <view class="shortcut">
+    <view class='shortcut-but'>快捷用语</view>
+    <view class='shortcut-but'>电话沟通</view>
+    <view class='shortcut-but'>活动邀请</view>
+    <view class='shortcut-but' bindtap='toSendProduct'>推荐商品</view>
   </view>
-  <view class="send" bindtap='sendMsg'>发送</view>
+  <!-- 输入框 -->
+  <view class="opration-area"><input type="text" bindinput="getContent" value="{{content}}"/></view>
+  <image class='icon' src='../../image/emoji.png' bindtap='showEmojiBox'></image>
+  <image wx:if="{{showSendBut}}" class="icon" src="../../image/send.png"  bindtap='sendMsg'></image>
+  <image wx:else class='icon' src='../../image/photo.png' bindtap='openPhoto'></image>
+  <!-- emoji 表情盒子-->
+  <view class="emoji-box">
+    <block wx:for="{{emoji}}" wx:key="">
+      <view class="emoji-cell">
+        <view class="touch-active" catchtap="emojiChoose" data-id="{{index}}">{{item}}</view>
+      </view>
+    </block>
+  </view>
 </view>

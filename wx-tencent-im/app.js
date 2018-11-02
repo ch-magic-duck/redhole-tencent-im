@@ -52,7 +52,7 @@ App({
         wx.request({
           url: url, method: 'GET', success: res => {
             // 通过 openid 获取【腾讯 im】签名值
-            var generatedSigUrl = 'http://localhost:8080/generatedSig'
+            var generatedSigUrl = 'http://sqdyy.cn:8080/generatedSig'
             var header = { "Content-Type": "application/x-www-form-urlencoded" };
             var data = { "identifier": res.data.openid}
             that.data.im.imId = res.data.openid // ocGnM4nO9kZf6WANSo7H5GGBZVk4

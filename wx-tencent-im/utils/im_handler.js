@@ -12,7 +12,6 @@ var accountMode, // 帐号模式，0 - 独立模式 1 - 托管模式
   friendId, // 好友 id
   friendName, // 好友昵称
   friendAvatarUrl, // 好友头像
-  currentMsgsArray, // 当前消息数组 用于增删改查
   contactListThat, // 当前会话列表页面对象
   chatThat, // 当前聊天好友页面对象
   selSess
@@ -44,7 +43,7 @@ function login(that, app, callback) {
   //其他对象，选填
   var options = {
     'isAccessFormalEnv': true, // 是否访问正式环境，默认访问正式，选填
-    'isLogOn': true // 是否开启控制台打印日志,默认开启，选填
+    'isLogOn': false // 是否开启控制台打印日志,默认开启，选填
   }
   // sdk 登录（独立模式）
   im.login(loginInfo, listeners, options, function (resp) {
@@ -100,9 +99,8 @@ function onMsgNotify(newMsgList) {
 function getC2CHistoryMsgs(cbOk) {
   im.Log.warn('开始获取聊天历史记录')
   var that = this
-  currentMsgsArray = []
   var reqMsgCount = 10 // 拉取消息条数
-  var lastMsgTime = wx.setStorageSync('lastMsgTime') || 0 // 最后一次拉取历史消息的时间
+  var lastMsgTime = wx.getStorageSync('lastMsgTime') || 0 // 最后一次拉取历史消息的时间
   var msgKey = wx.getStorageSync('msgKey') || '' 
   var options = {
     'Peer_Account': friendId, // 好友帐号
@@ -112,6 +110,15 @@ function getC2CHistoryMsgs(cbOk) {
   }
   // 真正获取历史消息的方法 交由实际调用者处理数据
   im.getC2CHistoryMsgs(options, function (resp) {
+    var complete = resp.Complete; //是否还有历史消息可以拉取，1-表示没有，0-表示有
+    if (resp.MsgList.length == 0) {
+      cbOk(false)
+      return
+    }
+    // 拉取消息后，要将下一次拉取信息所需要的东西给存在缓存中
+    wx.setStorageSync('lastMsgTime', resp.LastMsgTime);
+    wx.setStorageSync('msgKey', resp.MsgKey);
+    // 返回消息列表由用户进行处理
     cbOk(resp)
   })
   //消息已读上报，以及设置会话自动已读标记

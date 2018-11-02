@@ -1,0 +1,14 @@
+<view class="message-sec">
+  <block wx:for="{{images}}" wx:key="{{index}}">
+    <view class="child rel" bindtap='sendProduct' 
+      data-id="{{item.product_id}}" data-name="{{item.name}}" data-src="{{item.url}}" data-price="{{item.price}}">
+      <image class="abs br-10" wx:if="{{item.url != ''}}" src="{{item.url}}"></image>
+      <em class="abs">{{item.name}}</em>
+      <view class="content">
+        <view class="flex">
+          <view class="flex100-5 tr">{{item.price}}</view>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>
